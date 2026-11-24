@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:freelancer_workspace/component/btn.dart';
 import 'package:freelancer_workspace/pages/auth/forget_password.dart';
 import 'package:freelancer_workspace/pages/auth/login_screen.dart';
 import 'package:freelancer_workspace/services/auth_service.dart';
@@ -98,69 +99,127 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ico: 2,
             ob: true,
           ),
-
-          ElevatedButton(
-              onPressed: isloading ? null : () async {
+Btn(txt: "Register",onPress: isloading ? null : () async {
 
 
-              try {
-                if(passcontroller.text != passtwocontroller.text){
-                 showError('Password Not Match');
-                 return;
-                }  setState(() {
-                  isloading = true;
-                });
-                await AuthService().register(
-                  emailcontroller.text.trim(),
-                  passcontroller.text.trim(),
-                );
-                nextScreen();
+  try {
+    if(passcontroller.text != passtwocontroller.text){
+      showError('Password Not Match');
+      return;
+    }  setState(() {
+      isloading = true;
+    });
+    await AuthService().register(
+      emailcontroller.text.trim(),
+      passcontroller.text.trim(),
+    );
+    nextScreen();
 
 
-              } on FirebaseAuthException catch (e) {
-                print(e.code);
-                switch (e.code) {
-                  case 'email-already-in-use':
-                    showError('This email is already registered.');
-                    break;
+  } on FirebaseAuthException catch (e) {
+    print(e.code);
+    switch (e.code) {
+      case 'email-already-in-use':
+        showError('This email is already registered.');
+        break;
 
-                  case 'invalid-email':
-                    showError('Please enter a valid email address.');
-                    break;
+      case 'invalid-email':
+        showError('Please enter a valid email address.');
+        break;
 
-                  case 'weak-password':
-                    showError('Password is too weak. Use a stronger password.');
-                    break;
+      case 'weak-password':
+        showError('Password is too weak. Use a stronger password.');
+        break;
 
-                  case 'operation-not-allowed':
-                    showError('Email and password registration is unavailable.');
-                    break;
+      case 'operation-not-allowed':
+        showError('Email and password registration is unavailable.');
+        break;
 
-                  case 'network-request-failed':
-                    showError('Network error. Check your internet connection.');
-                    break;
+      case 'network-request-failed':
+        showError('Network error. Check your internet connection.');
+        break;
 
-                  case 'too-many-requests':
-                    showError('Too many attempts. Please try again later.');
-                    break;
+      case 'too-many-requests':
+        showError('Too many attempts. Please try again later.');
+        break;
 
-                  default:
-                    showError('Something went wrong. Please try again.');
-                }
-              }catch (e) {
-                showError('Something went wrong. Please try again.');
-              }
-              finally {
-              if (mounted) {
-              setState(() {
-              isloading = false;
-              });
+      default:
+        showError('Something went wrong. Please try again.');
+    }
+  }catch (e) {
+    showError('Something went wrong. Please try again.');
+  }
+  finally {
+    if (mounted) {
+      setState(() {
+        isloading = false;
+      });
 
-              }
-              }
-            },
-            child:isloading ? CircularProgressIndicator(): Text("Sign Up"),
-          ),
+    }
+  }
+},),
+          // ElevatedButton(
+          //     onPressed: isloading ? null : () async {
+          //
+          //
+          //     try {
+          //       if(passcontroller.text != passtwocontroller.text){
+          //        showError('Password Not Match');
+          //        return;
+          //       }  setState(() {
+          //         isloading = true;
+          //       });
+          //       await AuthService().register(
+          //         emailcontroller.text.trim(),
+          //         passcontroller.text.trim(),
+          //       );
+          //       nextScreen();
+          //
+          //
+          //     } on FirebaseAuthException catch (e) {
+          //       print(e.code);
+          //       switch (e.code) {
+          //         case 'email-already-in-use':
+          //           showError('This email is already registered.');
+          //           break;
+          //
+          //         case 'invalid-email':
+          //           showError('Please enter a valid email address.');
+          //           break;
+          //
+          //         case 'weak-password':
+          //           showError('Password is too weak. Use a stronger password.');
+          //           break;
+          //
+          //         case 'operation-not-allowed':
+          //           showError('Email and password registration is unavailable.');
+          //           break;
+          //
+          //         case 'network-request-failed':
+          //           showError('Network error. Check your internet connection.');
+          //           break;
+          //
+          //         case 'too-many-requests':
+          //           showError('Too many attempts. Please try again later.');
+          //           break;
+          //
+          //         default:
+          //           showError('Something went wrong. Please try again.');
+          //       }
+          //     }catch (e) {
+          //       showError('Something went wrong. Please try again.');
+          //     }
+          //     finally {
+          //     if (mounted) {
+          //     setState(() {
+          //     isloading = false;
+          //     });
+          //
+          //     }
+          //     }
+          //   },
+          //   child:isloading ? CircularProgressIndicator(): Text("Sign Up"),
+          // ),
         ],
       ),
     );

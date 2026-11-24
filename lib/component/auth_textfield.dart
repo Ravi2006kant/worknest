@@ -39,7 +39,7 @@ class _AuthTextfieldState extends State<AuthTextfield> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 5),
       child: TextFormField(
         obscureText: widget.ob ? !isPasswordVisible : false,
         // keyboardType: .emailAddress,
@@ -56,17 +56,18 @@ class _AuthTextfieldState extends State<AuthTextfield> {
                     });
                   },
                   icon: Icon(
-                    isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+
+                    isPasswordVisible ? Icons.visibility_outlined : Icons.visibility_off_rounded,
                   ),
                 )
               : null,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: BorderSide(color: Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: BorderSide(color: Colors.grey),
           ),
         ),
       ),

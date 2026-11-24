@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:freelancer_workspace/component/btn.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -8,11 +9,17 @@ class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: Container(decoration: BoxDecoration(
-    gradient: LinearGradient(colors: [Colors.red,Colors.blue])
+      body: Column(children: [
+        CircleAvatar(),
+        Text("Freelancer"),
+        Text("Workspace"),
 
-      ),
-    ),
+        SizedBox(height: 10,),
+        Text("Your complete freelance"),
+        Text("business companion"),
+        
+Btn(txt: "Get Started",onPress: (){},),
+      ],)
     );
   }
 }

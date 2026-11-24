@@ -30,18 +30,18 @@ class _HomeState extends State<Home> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedScreen,
-        unselectedItemColor: Colors.yellow ,
+        unselectedItemColor: Colors.grey ,
        backgroundColor: Colors.green,
         onTap: (value) {
           setState(() {
             _selectedScreen = value;
           });
         },
-        fixedColor: Colors.red,
+        fixedColor: Colors.blue,
         items: [
 
           BottomNavigationBarItem(
-            backgroundColor: Colors.blue,
+
             icon: Icon(Icons.dashboard),
             label: "Dashboard",
           ),
